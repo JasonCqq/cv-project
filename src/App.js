@@ -1,62 +1,112 @@
 import '../src/styles/App.css';
 import React, { Component } from 'react';
+import uniqid from 'uniqid';
+import Information from './components/generalInformation';
 
 class App extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props);
+    this.state = {
+      info: { 
+        name: "", 
+        email: "",
+        phone: "",
+        school: "",
+        study: "",
+        studyDate: "",
+        company: "",
+        position: "",
+        description: "",
+        dateFrom: "",
+        dateUntil: "",
+        id: uniqid() ,
+        isSubmitted: false,
+      },
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmitInfo = this.onSubmitInfo.bind(this);
+  }
+
+  handleChange = (e) => {
+    const target = e.target;
+    const value = target.value;
+    const targetName = target.name;
+    
+    this.setState({
+      info: {
+        ...this.state.info,
+        [targetName]: value,
+      },
+    });
+  };
+
+  onSubmitInfo = (e) => {
+    this.setState({
+      info: {
+        ...this.state.info,
+        isSubmitted: true,
+      },
+    });
+    e.preventDefault();
+  };
+
+  renderFormData = () => {
+    return <Information infos={this.state.info}/>
   }
 
   render(){
     return (
-      <div className="App">
-        <form className="cv-form">
+      <>
+        <form className="cv-form" onSubmit={this.onSubmitInfo}>
           <section className='general-information'>
             <div> 
-              <label for="nameInput">Name</label>
-              <input id="nameInput" name="name" type="text"></input>
+              <label htmlFor="nameInput">Name</label>
+              <input onChange={this.handleChange} value={this.state.info.name} id="nameInput" name="name" type="text"></input>
             </div>
 
             <div>
-              <label for="email">Email</label>
-              <input id='emailInput' name="email" type="email"></input>
+              <label htmlFor="email">Email</label>
+              <input onChange={this.handleChange} value={this.state.info.email} id='emailInput' name="email" type="email"></input>
             </div>
 
-              <label for="phone">Phone Number</label>
-              <input id="phoneInput" name="phone" type="tel"></input>
+              <label htmlFor="phone">Phone Number</label>
+              <input onChange={this.handleChange} value={this.state.info.phone} id="phoneInput" name="phone" type="tel"></input>
               <small>Format: 123-456-7890</small>
           </section>
 
           <section className='educational-information'>
-            <label for="schoolName">School Name</label>
-            <input id="schoolInput" name="schoolName" type="text"></input>
+            <label htmlFor="schoolName">School Name</label>
+            <input onChange={this.handleChange} value={this.state.info.school} id="schoolInput" name="school" type="text"></input>
 
             <label>Title of Study</label>
-            <input type="text"></input>
+            <input onChange={this.handleChange} value={this.state.info.study} name="study" type="text"></input>
 
             <label>Date of Study</label>
-            <input></input>
+            <input onChange={this.handleChange} value={this.state.info.studyDate} name="studyDate" type="date"></input>
           </section>
 
           <section className='work-information'>
             <label>Company Name</label>
-            <input type="text"></input>
+            <input onChange={this.handleChange} value={this.state.info.company}  name="company" type="text"></input>
 
             <label>Position Title</label>
-            <input type="text"></input>
+            <input onChange={this.handleChange} value={this.state.info.position}  name="position" type="text"></input>
 
             <label>Description of your contributions</label>
-            <textarea type="text"></textarea>
+            <textarea onChange={this.handleChange} value={this.state.info.description} name="description" type="text"></textarea>
 
             <label>From</label>
-            <input></input>
+            <input onChange={this.handleChange} value={this.state.info.dateFrom}  name="dateFrom" type="date"></input>
 
             <label>Until</label>
-            <input></input>
+            <input onChange={this.handleChange} value={this.state.info.dateUntil}  name="dateUntil" type="date"></input>
           </section>
 
           <button type="submit">Submit</button>
         </form>
-      </div>
+        {this.state.info.isSubmitted && this.renderFormData()}
+      </>
     );
   }
 }
