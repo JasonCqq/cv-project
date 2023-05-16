@@ -58,23 +58,21 @@ class App extends Component {
   render(){
     return (
       <>
+        <h1>CV GENERATOR</h1>
         <form className="cv-form" onSubmit={this.onSubmitInfo}>
           <section className='general-information'>
-            <div> 
               <label htmlFor="nameInput">Name</label>
               <input onChange={this.handleChange} value={this.state.info.name} id="nameInput" name="name" type="text"></input>
-            </div>
 
-            <div>
+
               <label htmlFor="email">Email</label>
               <input onChange={this.handleChange} value={this.state.info.email} id='emailInput' name="email" type="email"></input>
-            </div>
 
               <label htmlFor="phone">Phone Number</label>
               <input onChange={this.handleChange} value={this.state.info.phone} id="phoneInput" name="phone" type="tel"></input>
-              <small>Format: 123-456-7890</small>
+              <span></span>
           </section>
-
+          
           <section className='educational-information'>
             <label htmlFor="schoolName">School Name</label>
             <input onChange={this.handleChange} value={this.state.info.school} id="schoolInput" name="school" type="text"></input>
@@ -84,6 +82,7 @@ class App extends Component {
 
             <label>Date of Study</label>
             <input onChange={this.handleChange} value={this.state.info.studyDate} name="studyDate" type="date"></input>
+            <span></span>
           </section>
 
           <section className='work-information'>
@@ -103,7 +102,7 @@ class App extends Component {
             <input onChange={this.handleChange} value={this.state.info.dateUntil}  name="dateUntil" type="date"></input>
           </section>
 
-          <button type="submit">Submit</button>
+          <button type="submit">Create CV</button>
         </form>
         {this.state.info.isSubmitted && this.renderFormData()}
       </>
