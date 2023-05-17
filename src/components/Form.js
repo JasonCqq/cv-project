@@ -51,7 +51,7 @@ const Form = (props) => {
               <input onChange={handleChange} value={info.dateUntil}  name="dateUntil" type="date"></input>
             </section>
     
-            <button type="submit">Create CV</button>
+            <button type="submit">Save</button>
           </form>
         )
     }

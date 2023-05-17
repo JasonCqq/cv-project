@@ -26,6 +26,7 @@ class App extends Component {
   
     this.handleChange = this.handleChange.bind(this);
     this.onSubmitInfo = this.onSubmitInfo.bind(this);
+    this.editButtonFunction = this.editButtonFunction.bind(this);
   }
 
   handleChange = (e) => {
@@ -51,14 +52,14 @@ class App extends Component {
     e.preventDefault();
   };
 
-  renderFormData = () => {
-    return (
-      <>
-        <Information infos={this.state.info}/>
-      </>
-      )
+  editButtonFunction = () => {
+    this.setState({
+      info: {
+        ...this.state.info,
+        isSubmitted: false,
+      },
+    });
   }
-
 
   render(){
     return (
@@ -70,7 +71,10 @@ class App extends Component {
         onSubmitInfo={this.onSubmitInfo}
         />
 
-        {this.state.info.isSubmitted && this.renderFormData()}
+        <Information
+        infos={this.state.info}
+        editButtonFunction={this.editButtonFunction}
+        />
       </>
     );
   }

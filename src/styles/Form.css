@@ -54,11 +54,12 @@ h1{
     text-transform: uppercase;
     color:  black;
     max-width: 25%;
-    padding: 10px 25px;
+    padding: 10px 15px;
     letter-spacing: 1px;
     font-size: 1.35rem;
     font-weight: bold;
     margin: auto;
+    margin-top: 1vh;
     cursor: pointer;
 }
 

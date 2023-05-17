@@ -87,3 +87,22 @@ body{
     gap: 50px;
     margin-top: 3vh;
 }
+
+.buttonDiv{
+    display: flex;
+}
+
+button{
+    background-color: #2ec4b6;
+    border: none;
+    text-transform: uppercase;
+    color:  black;
+    max-width: 25%;
+    padding: 10px 25px;
+    letter-spacing: 1px;
+    font-size: 1.35rem;
+    font-weight: bold;
+    margin: auto;
+    cursor: pointer;
+    margin-top: 5vh;
+}
