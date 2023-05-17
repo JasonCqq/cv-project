@@ -1,7 +1,7 @@
-import '../src/styles/App.css';
 import React, { Component } from 'react';
 import uniqid from 'uniqid';
-import Information from './components/generalInformation';
+import Information from './components/Information';
+import Form from './components/Form';
 
 class App extends Component {
   constructor(props){
@@ -23,7 +23,7 @@ class App extends Component {
         isSubmitted: false,
       },
     };
-
+  
     this.handleChange = this.handleChange.bind(this);
     this.onSubmitInfo = this.onSubmitInfo.bind(this);
   }
@@ -52,58 +52,24 @@ class App extends Component {
   };
 
   renderFormData = () => {
-    return <Information infos={this.state.info}/>
+    return (
+      <>
+        <Information infos={this.state.info}/>
+      </>
+      )
   }
+
 
   render(){
     return (
       <>
         <h1>CV GENERATOR</h1>
-        <form className="cv-form" onSubmit={this.onSubmitInfo}>
-          <section className='general-information'>
-              <label htmlFor="nameInput">Name</label>
-              <input onChange={this.handleChange} value={this.state.info.name} id="nameInput" name="name" type="text"></input>
+        <Form
+        info={this.state.info}
+        handleChange={this.handleChange}
+        onSubmitInfo={this.onSubmitInfo}
+        />
 
-
-              <label htmlFor="email">Email</label>
-              <input onChange={this.handleChange} value={this.state.info.email} id='emailInput' name="email" type="email"></input>
-
-              <label htmlFor="phone">Phone Number</label>
-              <input onChange={this.handleChange} value={this.state.info.phone} id="phoneInput" name="phone" type="tel"></input>
-              <span></span>
-          </section>
-          
-          <section className='educational-information'>
-            <label htmlFor="schoolName">School Name</label>
-            <input onChange={this.handleChange} value={this.state.info.school} id="schoolInput" name="school" type="text"></input>
-
-            <label>Title of Study</label>
-            <input onChange={this.handleChange} value={this.state.info.study} name="study" type="text"></input>
-
-            <label>Date of Study</label>
-            <input onChange={this.handleChange} value={this.state.info.studyDate} name="studyDate" type="date"></input>
-            <span></span>
-          </section>
-
-          <section className='work-information'>
-            <label>Company Name</label>
-            <input onChange={this.handleChange} value={this.state.info.company}  name="company" type="text"></input>
-
-            <label>Position Title</label>
-            <input onChange={this.handleChange} value={this.state.info.position}  name="position" type="text"></input>
-
-            <label>Description of your contributions</label>
-            <textarea onChange={this.handleChange} value={this.state.info.description} name="description" type="text"></textarea>
-
-            <label>From</label>
-            <input onChange={this.handleChange} value={this.state.info.dateFrom}  name="dateFrom" type="date"></input>
-
-            <label>Until</label>
-            <input onChange={this.handleChange} value={this.state.info.dateUntil}  name="dateUntil" type="date"></input>
-          </section>
-
-          <button type="submit">Create CV</button>
-        </form>
         {this.state.info.isSubmitted && this.renderFormData()}
       </>
     );
